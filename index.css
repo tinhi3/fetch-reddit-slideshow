@@ -1,0 +1,27 @@
+body {
+    text-align: center;
+    background-color: rgb(243, 165, 47);
+    margin-top: 30px;
+}
+
+p {
+    color: black;
+    font-weight: bold;
+    margin: 10px;
+}
+
+#title {
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+
+#stopSlideShow {
+    margin: 10px;
+    color: black;
+    border: 7px solid black;
+    background-color: white;
+}
+
+
+
