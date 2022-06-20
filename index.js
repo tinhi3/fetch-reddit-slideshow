@@ -1,88 +1,113 @@
-// const container = document.querySelector("#container")
+// Global variable declared
 
-// const onFetchSuccess = () => {
-    //     console.log("on success")
-    // }
-    
-    // const onFetchFailure = () => {
-        //     console.log("on failure")
-        // }
-        
-        
-        // Calling back to HTML
+let iterator = 0
 
-// Create Div to store images
-let i = 0
-const loopPhoto = (arrayImages) => {
+// Step 1//
+// Search bar & search results
+// Listening for an event to run a block of code
 
-    let emptyArray = []
-    for (let i = 0; i < 20; i++) {
-        emptyArray[i] = 
-        arrayImages.data.children[i].data.url
-        console.log(emptyArray)
-    }
-}
-
-// Slideshow Div
-const slidePhotoDivGrab = 
-document.querySelector("#slideshow")
-// have pictures iterate through array
-// let arrayImages = 0
-// for (let i= 0; i < 15;i++)
-let imageArray = imageArray.data.children
-console.log(imageArray)
-
-
-// Div for photos
-const photoDiv = document.createElement("div")
-
-// Test
-// console.log(arrayImages.data.children[0].data.url)
-
-pictureDiv.innerHTML = `<img src="${imageArray.data.children[1].data.url}" + width=400 + height=400 /img>`
-
-    const x = 1
-    const previewPath = data.children[x].data.preview.image[x.source.url
-
-document.querySelector("body").appendChild(photoDiv)
-
-        console.log(arrayImages)
-
-// Search/Results bar
-
-const searchForm = document.getElementById("inputform")
+const form = document.getElementById("inputform")
 console.log(form)
+// add an eventListener to my submit input button
 form.addEventListener("submit", (event) => {
+
     event.preventDefault()
 
-    const userSearch = input.value
-    console.log(userSearch)
-
-    fetch(`http://www.reddit.com/search.json?q="${userSearch}+nsfw:no`)
-
+    const userSearchTerm = input.value
+    console.log(userSearchTerm)
+    // Plug in the "userSearchTerm" into the API fetch request
+    fetch(`https://www.reddit.com/search.json?q="${userSearchTerm}"+nsfw:no+type:image`)
     .then(res => res.json())
-
     .then(photoLoop)
-
     .catch()
 })
 
 
+//Step 2//
+
+// Div to store images when iterating
+// Here we are grabbing the images returned from our search and sorting through them to display
+// Then we will take the images we like and put them into the "emptyArray"
+
+let i = 0
+const photoLoop = (arrayObject) => {    
+    
+    // not using this right now
+    // const urlPath = arrayObject.data.children[i].data.preview.image[i].data.url
+    // const urlPath2 = arrayObject.data.children[i].data.url
+
+    // Loop to iterate/run through the stored images
+
+    let emptyArray = []
+    for (let i = 0; i < 30; i++) {
+        emptyArray[i] = arrayObject.data.children[i].data.url
+        console.log("emptyArray" + emptyArray)
+    
+    slideLoop(emptyArray)
+    }}  
+
+
+// Step 3 
+//take the cleaned images and put them into the emptyArray to display in the slideshow Div. 
+
+const slideLoop = (emptyArray) => {
+    console.log("iterator:" + iterator)
+    const slidePhotoDivGrab = document.querySelector("#slideshow")
+    slidePhotoDivGrab.innerHTML = `<img src="${emptyArray[iterator]}" + width=400 + heigth=400 /img>`
+    
+    
+    document.querySelector("body").appendChild(slidePhotoDivGrab)
+    iterator++
+}
+
+// setInterval for later when images populate consistently
+// setInterval(slideLoop, 3000)
+
+
+stopSlideShow.addEventListener("click", function (event) {
+    location.reload()
+})
+
+
+
+//     const slidePhotoDivGrab = document.querySelector('#slideshow')
+// // have the pictures iterate through
+//     // let arrayObject = 0
+//     // for (let i = 0; i < 15; i++)
+//     let imageArray = arrayObject.data.children
+//     console.log(imageArray)
+
+//     const photoDiv = document.createElement('div')
+
+//     // console.log(arrayObject.data.children[0].data.url)
+
+//     photoDiv.innerHTML = `<img src="${arrayObject.data.children[1].data.url}" + width=600 + height=600 /img>` 
+
+//     document.querySelector('body').appendChild(photoDiv)
+//     console.log(arrayObject)
+// }
+
+
+    
+// const redditApiUrl = 'https://www.reddit.com/r/pics/.json?jsonp+nsfw:no'
+// const redditApiUrl1 =  https://www.reddit.com/r/aww.json
+
+// let imageSearch = "dogs"   // THIS WORKED 
+// const redditApiUrl2 =  `https://www.reddit.com/search.json?q="${imageSearch}"+nsfw:no+type:image`  // THIS WORKED
+
+
+// https://www.reddit.com/r/aww.json
+
+// redditFetch(redditApiUrl2)
+// white_check_mark
+// eyes
+// raised_hands
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
+///////////////////////////////////////
 
 
 
@@ -101,12 +126,6 @@ form.addEventListener("submit", (event) => {
 
 
 
-
-
-
-
-
-
 // const onGetSearchSuccess = (redditArray) => {
 //     let img = document.querySelector(".item")
 //     for (let i = 0; i < redditArray.data.children.length; i++) {
@@ -114,7 +133,6 @@ form.addEventListener("submit", (event) => {
 //         data.url}" + width=200 + height=200/>`
 //     }
 // }
-
 
 
 
